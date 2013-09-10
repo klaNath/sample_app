@@ -1,35 +1,35 @@
 require 'spec_helper'
 
+describe "Static pages" do
 
-describe "StaticPages" do
-  describe "HomePage" do
-    it "should have the content 'SampleApp'"do
-		visit '/static_pages/home'
-		expect(page).to have_title('Home')
-	end
-  end
+	  subject { page }
 
-	it do visit '/static_pages/home'
-		expect(page).to have_content("Sample App")
-	end
+	    describe "Home page" do
+			    before { visit root_path }
 
-	describe "Help page" do
-		it do  visit '/static_pages/help'
-		expect(page).to have_content('Help')
-		end
-		it do  visit '/static_pages/help'
-		expect(page).to have_title('Help')
-		end
-	end
+				    it { should have_content('Sample App') }
+					it { should have_title(full_title('')) }
+					it { should_not have_title('| Home') }
+				  end
 
-	describe "About page" do
-		it do visit '/static_pages/about'
-			expect(page).to have_content('About Us')
-		end
-		it do visit '/static_pages/about'
-			expect(page).to have_title('About Us')
-		end
-	end
+		  describe "Help page" do
+			      before { visit help_path }
+
+				      it { should have_content('Help') }
+					      it { should have_title(full_title('Help')) }
+						    end
+
+		    describe "About page" do
+				    before { visit about_path }
+
+					    it { should have_content('About') }
+						    it { should have_title(full_title('About Us')) }
+							  end
+
+			  describe "Contact page" do
+				      before { visit contact_path }
+
+					      it { should have_content('Contact') }
+						      it { should have_title(full_title('Contact')) }
+							    end
 end
-
-
